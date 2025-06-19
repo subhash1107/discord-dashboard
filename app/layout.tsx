@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./context/ThemeContext";
 import NavBar from "./components/NavBar";
+import SideBar from "./components/SideBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,8 +31,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-          <NavBar/>
-        {children}
+          <NavBar />
+          <div className="flex w-full">
+            <SideBar className="max-w-[25%] w-full hidden md:block"/>
+            {children}</div>
         </ThemeProvider>
       </body>
     </html>
