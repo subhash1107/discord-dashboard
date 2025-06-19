@@ -58,4 +58,4 @@ useEffect(()=>{
   );
 };
 
-export const useDarkMode = () => useContext(ThemeContext);
+export const useTheme = () => useContext(ThemeContext);
