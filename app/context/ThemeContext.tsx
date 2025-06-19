@@ -9,48 +9,58 @@ import {
   useState,
 } from "react";
 
+export type ThemeMode = "light" | "dark" | "system";
+
 interface ThemeContextTypes {
-  mode: ThemeMode,
-  setMode: Dispatch<SetStateAction<ThemeMode>>
+  mode: ThemeMode;
+  setMode: Dispatch<SetStateAction<ThemeMode>>;
 }
-export type ThemeMode = 'light' | 'dark' | 'system'
 
 const ThemeContext = createContext<ThemeContextTypes | null>(null);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [mode, setMode] = useState<ThemeMode>('system');
+  const [mode, setMode] = useState<ThemeMode>("system");
+  const [hydrated, setHydrated] = useState<boolean>(false);
 
-  const applyTheme = (newMode:ThemeMode) =>{
-    if(newMode === 'light'){
-        document.documentElement.classList.remove('dark')
-        localStorage.setItem('themeMode','light')
-    } else if(newMode === 'dark'){
-        document.documentElement.classList.add('dark')
-        localStorage.setItem('themeMode','dark')
+  const applyTheme = (newMode: ThemeMode) => {
+    if (newMode === "light") {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("themeMode", "light");
+    } else if (newMode === "dark") {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("themeMode", "dark");
     } else {
-        const preferDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-        document.documentElement.classList.toggle('dark',preferDark)
-        localStorage.removeItem('themeMode')
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle("dark", prefersDark);
+      localStorage.removeItem("themeMode");
     }
-  }
+  };
+
   useEffect(() => {
-    const storedTheme = localStorage.getItem('themeMode')
-    const initialMode = storedTheme === 'dark' || storedTheme ==='light' ? storedTheme : 'system' 
-    setMode(initialMode)
-    applyTheme(initialMode)
-    
-    const mediaQuery = window.matchMedia('(prefers-color-scheme : dark)')
-    const handleChange = (e:MediaQueryListEvent) =>{
-        document.documentElement.classList.toggle('dark',e.matches)
+    const storedTheme = localStorage.getItem("themeMode") as ThemeMode | null;
+    const initialMode = storedTheme === "light" || storedTheme === "dark" ? storedTheme : "system";
+    setMode(initialMode);
+    applyTheme(initialMode);
+    setHydrated(true); 
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (initialMode === "system") {
+        document.documentElement.classList.toggle("dark", e.matches);
+      }
+    };
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (hydrated) {
+      applyTheme(mode);
     }
+  }, [mode, hydrated]);
 
-    mediaQuery.addEventListener('change',handleChange)
-    return ()=> mediaQuery.removeEventListener('change',handleChange)
-}, []);
+  if (!hydrated) return null;
 
-useEffect(()=>{
-    applyTheme(mode)
-},[mode])
   return (
     <ThemeContext.Provider value={{ mode, setMode }}>
       {children}
@@ -58,4 +68,8 @@ useEffect(()=>{
   );
 };
 
-export const useTheme = () => useContext(ThemeContext);
+export const useTheme = () => {
+  const ctx = useContext(ThemeContext);
+  if (!ctx) throw new Error("useTheme must be used within ThemeProvider");
+  return ctx;
+};
