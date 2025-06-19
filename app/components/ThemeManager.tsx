@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { ThemeMode, useTheme } from "../context/ThemeContext";
 import NavButton from "./NavButton";
 
-const ThemeManager = ({ className }: { className: string }) => {
+const ThemeManager = ({ className }: { className?: string }) => {
   const [optionToggle, setOptionToggle] = useState<boolean>(false);
   const { mode, setMode } = useTheme()!;
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,7 +38,7 @@ const ThemeManager = ({ className }: { className: string }) => {
       </NavButton>
 
       {optionToggle && (
-        <ul className="absolute border border-gray-200 rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 transition-all">
+        <ul className="absolute mt-2 border border-gray-200 rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 transition-all">
           {options.map((option, index) => (
             <li
               key={index}
