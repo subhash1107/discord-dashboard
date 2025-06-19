@@ -4,7 +4,7 @@ import SideBar from '../components/SideBar'
 const Members = () => {
   return (
     <div>
-        <SideBar/>
+        <SideBar className='max-w-[25%] hidden md:block'/>
         Members</div>
   )
 }

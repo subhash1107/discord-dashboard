@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
-const SideBar = () => {
+const SideBar = ({className,onClose}:{className?:string,onClose?:()=>void}) => {
   const pathname = usePathname()
 
   const links = [
@@ -17,7 +17,7 @@ const SideBar = () => {
   ]
 
   return (
-    <aside className="min-h-screen bg-blue-950 dark:bg-[#262a45] text-white flex flex-col items-start max-w-[25%]">
+    <aside className={`min-h-screen bg-blue-950 dark:bg-[#262a45] text-white flex flex-col items-start ${className}`}>
         <hr className='border-gray-400 w-full'/>
       {links.map(({ href, label, icon },index) => {
         const isActive = pathname === href
@@ -26,7 +26,7 @@ const SideBar = () => {
           hover:bg-[#ffffff62] hover:cursor-pointer 
           ${isActive ? 'border-r-4 border-r-white bg-[#ffffff20]' : 'border-r-4 border-r-transparent'}`
         return (
-          <Link key={index} href={href} className={classNames}>
+          <Link key={index} href={href} onClick={onClose} className={classNames}>
             {icon}
             {label}
           </Link>
