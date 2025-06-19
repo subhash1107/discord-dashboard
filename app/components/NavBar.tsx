@@ -1,0 +1,36 @@
+'use client'
+import { BellAlertIcon, PuzzlePieceIcon } from '@heroicons/react/24/solid'
+import React, { useState } from 'react'
+import ThemeManager from './ThemeManager'
+import NavButton from './NavButton'
+import { UserCircleIcon } from '@heroicons/react/24/outline'
+import { Bars3BottomLeftIcon } from '@heroicons/react/24/solid'
+
+const NavBar = () => {
+    const [sideBar,setSideBar] = useState<boolean>(false)
+  return (
+    <nav className='bg-blue-600 dark:bg-blue-950 text-gray-800 dark:text-gray-100 flex justify-center p-6 '>
+      <div className='max-w-6xl w-full '>
+        <div className='flex justify-between items-center'>
+         <div className='flex justify-between gap-4 items-center hover:cursor-pointer'>
+            <Bars3BottomLeftIcon className='w-8 h-8 block md:hidden' onClick={()=>setSideBar(!sideBar)}/>
+            <PuzzlePieceIcon className='sm:w-12 sm:h-12 w-8 h-8'/>
+            <h1 className='text-2xl font-semibold hidden sm:block'>PuzzleZone</h1>
+         </div>
+         <div className='flex justify-between items-center gap-2'>
+            <NavButton className=' rounded-full p-2 bg-[#ffffff48]'>
+            <BellAlertIcon className='sm:w-7 sm:h-7 w-5 h-5'/>
+            </NavButton>
+            <ThemeManager className='p-2 rounded-full bg-[#ffffff48]' />
+            <NavButton className=' rounded-full p-2 bg-[#ffffff48]'>
+            <UserCircleIcon className='sm:w-7 sm:h-7 w-5 h-5'/>
+            </NavButton>
+
+         </div>
+         </div>
+      </div>
+    </nav>
+  )
+}
+
+export default NavBar
