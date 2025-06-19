@@ -1,9 +1,8 @@
+import React from 'react'
 
 const Members = () => {
   return (
-    <div>
-      
-        Members</div>
+    <div>Members</div>
   )
 }
 
