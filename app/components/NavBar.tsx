@@ -17,8 +17,9 @@ const NavBar = () => {
         <div className='flex justify-between items-center'>
          <div className='flex justify-between gap-4 items-center hover:cursor-pointer'>
             <Bars3BottomLeftIcon aria-label='click to open slidebar' className='w-8 h-8 block md:hidden' onClick={()=>setSideBar(!sideBar)}/>
-            <Link href={'/'}><PuzzlePieceIcon aria-label='logo' className='sm:w-12 sm:h-12 w-8 h-8'/></Link>
+            <Link href={'/'}><PuzzlePieceIcon aria-label='logo' className='sm:w-12 sm:h-12 w-8 h-8'/>
             <h1 className='text-2xl font-semibold hidden sm:block'>PuzzleZone</h1>
+            </Link>
          </div>
          <div className='flex justify-between items-center gap-2'>
             <NavButton className=' rounded-full p-2 bg-[#ffffff48]'>
