@@ -39,7 +39,7 @@ const MembersTable = () => {
   }, [search, roleFilter, sortBy]);
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-700  min-h-screen transition-colors w-full p-5 dark:text-white">
+    <div className="bg-gray-50 dark:bg-gray-800  min-h-screen transition-colors w-full p-5 dark:text-white">
       <h2 className="text-xl font-semibold mb-4">Members</h2>
 
       <div className="flex flex-wrap items-center gap-4 mb-4">

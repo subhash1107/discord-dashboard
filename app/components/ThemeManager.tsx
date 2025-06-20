@@ -42,6 +42,7 @@ const ThemeManager = ({ className }: { className?: string }) => {
           {options.map((option, index) => (
             <li
               key={index}
+              aria-label={option.value}
               className="inline-flex gap-2 items-center hover:bg-gray-100 rounded-md w-full p-1 hover:cursor-pointer dark:hover:bg-gray-800 transition"
               onClick={() => {
                 setOptionToggle(false);

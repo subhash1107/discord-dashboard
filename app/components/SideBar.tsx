@@ -26,7 +26,7 @@ const SideBar = ({className,onClose}:{className?:string,onClose?:()=>void}) => {
           hover:bg-[#ffffff62] hover:cursor-pointer 
           ${isActive ? 'border-r-4 border-r-white bg-[#ffffff20]' : 'border-r-4 border-r-transparent'}`
         return (
-          <Link key={index} href={href} onClick={onClose} className={classNames}>
+          <Link key={index} href={href} aria-label={label} onClick={onClose} className={classNames}>
             {icon}
             {label}
           </Link>
