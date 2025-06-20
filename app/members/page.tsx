@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Pagination from "./components/Pagination";
 import { mockMembers } from "../mockData/members.mockData";
-import { AvatarWithFallback } from "./components/AvtarWithFallBack";
+import { AvatarWithFallback } from "../components/AvtarWithFallBack";
 import SearchInput from "./components/SearchInput";
 import FilterSelect from "./components/FilterSelect";
 import SortSelect from "./components/SortSelect";
@@ -14,7 +14,7 @@ const MembersTable = () => {
   const [roleFilter, setRoleFilter] = useState("All");
   const [sortBy, setSortBy] = useState<"name" | "joinedAt">("joinedAt");
   const [currentPage, setCurrentPage] = useState(1);
-  console.log(modalOpen)
+  console.log(modalOpen);
   const filtered = useMemo(() => {
     let data = mockMembers.filter((member) =>
       member.name.toLowerCase().includes(search.toLowerCase())
@@ -62,7 +62,7 @@ const MembersTable = () => {
         >
           Add User
         </button>
-        {modalOpen&&<AddUserModal onClose={()=>setModalOpen(false)} />}
+        {modalOpen && <AddUserModal onClose={() => setModalOpen(false)} />}
       </div>
 
       <div className="overflow-x-auto">
