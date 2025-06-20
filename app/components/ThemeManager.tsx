@@ -1,5 +1,9 @@
-'use client'
-import { ComputerDesktopIcon, MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+"use client";
+import {
+  ComputerDesktopIcon,
+  MoonIcon,
+  SunIcon,
+} from "@heroicons/react/24/outline";
 import React, { useEffect, useRef, useState } from "react";
 import { ThemeMode, useTheme } from "../context/ThemeContext";
 import NavButton from "./NavButton";
@@ -11,7 +15,10 @@ const ThemeManager = ({ className }: { className?: string }) => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
         setOptionToggle(false);
       }
     };
@@ -26,14 +33,28 @@ const ThemeManager = ({ className }: { className?: string }) => {
     value: ThemeMode;
     icon: React.JSX.Element;
   }[] = [
-    { value: "light", icon: <SunIcon className="sm:w-7 sm:h-7 w-5 h-5 text-yellow-300" /> },
-    { value: "dark", icon: <MoonIcon className="sm:w-7 sm:h-7 w-5 h-5 text-gray-300" /> },
-    { value: "system", icon: <ComputerDesktopIcon className="sm:w-7 sm:h-7 w-5 h-5 text-blue-400" /> },
+    {
+      value: "light",
+      icon: <SunIcon className="sm:w-7 sm:h-7 w-5 h-5 text-yellow-300" />,
+    },
+    {
+      value: "dark",
+      icon: <MoonIcon className="sm:w-7 sm:h-7 w-5 h-5 text-gray-300" />,
+    },
+    {
+      value: "system",
+      icon: (
+        <ComputerDesktopIcon className="sm:w-7 sm:h-7 w-5 h-5 text-blue-400" />
+      ),
+    },
   ];
 
   return (
     <div className="relative dark:text-gray-200" ref={containerRef}>
-      <NavButton onClick={handleOpenToggle} className={`hover:cursor-pointer ${className}`}>
+      <NavButton
+        onClick={handleOpenToggle}
+        className={`hover:cursor-pointer ${className}`}
+      >
         <span>{options.find((option) => option.value === mode)?.icon}</span>
       </NavButton>
 

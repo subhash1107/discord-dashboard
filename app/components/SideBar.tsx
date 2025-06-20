@@ -17,7 +17,7 @@ const SideBar = ({className,onClose}:{className?:string,onClose?:()=>void}) => {
   ]
 
   return (
-    <aside className={`min-h-screen bg-blue-950 dark:bg-[#262a45] text-white flex flex-col items-start ${className}`}>
+    <aside className={`min-h-screen dark:bg-gray-900 bg-[#262a45] text-white flex flex-col items-start ${className}`}>
         <hr className='border-gray-400 w-full'/>
       {links.map(({ href, label, icon },index) => {
         const isActive = pathname === href

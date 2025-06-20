@@ -7,17 +7,19 @@ import SearchInput from "./components/SearchInput";
 import FilterSelect from "./components/FilterSelect";
 import SortSelect from "./components/SortSelect";
 import AddUserModal from "./components/AddUserModal";
+import useDebounce from "../hooks/useDebounce";
 
 const MembersTable = () => {
   const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 400);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [roleFilter, setRoleFilter] = useState("All");
   const [sortBy, setSortBy] = useState<"name" | "joinedAt">("joinedAt");
   const [currentPage, setCurrentPage] = useState(1);
-  console.log(modalOpen);
+
   const filtered = useMemo(() => {
     let data = mockMembers.filter((member) =>
-      member.name.toLowerCase().includes(search.toLowerCase())
+      member.name.toLowerCase().includes((debouncedSearch??'').toLowerCase())
     );
     if (roleFilter !== "All")
       data = data.filter((member) => member.role === roleFilter);
@@ -26,7 +28,7 @@ const MembersTable = () => {
         ? a.name.localeCompare(b.name)
         : new Date(b.joinedAt).getTime() - new Date(a.joinedAt).getTime()
     );
-  }, [search, roleFilter, sortBy]);
+  }, [debouncedSearch, roleFilter, sortBy]);
 
   const totalPages = Math.ceil(filtered.length / itemsPerPage);
   const paginatedData = filtered.slice(
@@ -36,7 +38,7 @@ const MembersTable = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [search, roleFilter, sortBy]);
+  }, [debouncedSearch, roleFilter, sortBy]);
 
   return (
     <div className="bg-gray-50 dark:bg-gray-800  min-h-screen transition-colors w-full p-5 dark:text-white">

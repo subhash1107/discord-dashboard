@@ -11,7 +11,7 @@ const NavBar = () => {
   return (
     <nav>
     <SideBarOverlay className={`transition-transform duration-300 ease-in-out ${sideBar ? 'translate-x-0' : '-translate-x-[100%]'}`} onClose={()=>setSideBar(false)}/>
-    <div className='bg-blue-500 dark:bg-blue-950 text-gray-800 dark:text-gray-100 flex justify-center p-6 transition'>
+    <div className='bg-blue-500 dark:bg-gray-900 text-gray-800 dark:text-gray-100 flex justify-center p-6 transition'>
       <div className='max-w-6xl w-full '>
         <div className='flex justify-between items-center'>
          <div className='flex justify-between gap-4 items-center hover:cursor-pointer'>
