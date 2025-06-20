@@ -2,6 +2,12 @@
 
 A modern, responsive dashboard for managing a Discord-like community, built with Next.js, React, Tailwind CSS, and Heroicons. This project features a dashboard overview, member management, and mock data for demonstration.
 
+## Screenshots
+
+|                           Dark Mode                           |                           Light Mode                            |                            Mobile View                            |
+| :-----------------------------------------------------------: | :-------------------------------------------------------------: | :---------------------------------------------------------------: |
+| ![Dashboard Dark Mode](public/screenshots/dashboard-dark.png) | ![Dashboard Light Mode](public/screenshots/dashboard-light.png) | ![Dashboard Mobile View](public/screenshots/dashboard-mobile.png) |
+
 ## Features
 
 - **Dashboard Overview**: View key server statistics (total members, online now, active roles, messages today) with visually appealing stat cards.
