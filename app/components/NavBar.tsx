@@ -5,6 +5,7 @@ import { useState } from 'react'
 import NavButton from './NavButton'
 import ThemeManager from './ThemeManager'
 import SideBarOverlay from './SideBarOverlay'
+import Link from 'next/link'
 
 const NavBar = () => {
     const [sideBar,setSideBar] = useState<boolean>(false)
@@ -16,7 +17,7 @@ const NavBar = () => {
         <div className='flex justify-between items-center'>
          <div className='flex justify-between gap-4 items-center hover:cursor-pointer'>
             <Bars3BottomLeftIcon aria-label='click to open slidebar' className='w-8 h-8 block md:hidden' onClick={()=>setSideBar(!sideBar)}/>
-            <PuzzlePieceIcon className='sm:w-12 sm:h-12 w-8 h-8'/>
+            <Link href={'/'}><PuzzlePieceIcon aria-label='logo' className='sm:w-12 sm:h-12 w-8 h-8'/></Link>
             <h1 className='text-2xl font-semibold hidden sm:block'>PuzzleZone</h1>
          </div>
          <div className='flex justify-between items-center gap-2'>
