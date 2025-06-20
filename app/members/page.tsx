@@ -6,13 +6,15 @@ import { AvatarWithFallback } from "./components/AvtarWithFallBack";
 import SearchInput from "./components/SearchInput";
 import FilterSelect from "./components/FilterSelect";
 import SortSelect from "./components/SortSelect";
+import AddUserModal from "./components/AddUserModal";
 
 const MembersTable = () => {
   const [search, setSearch] = useState("");
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [roleFilter, setRoleFilter] = useState("All");
   const [sortBy, setSortBy] = useState<"name" | "joinedAt">("joinedAt");
   const [currentPage, setCurrentPage] = useState(1);
-
+  console.log(modalOpen)
   const filtered = useMemo(() => {
     let data = mockMembers.filter((member) =>
       member.name.toLowerCase().includes(search.toLowerCase())
@@ -53,6 +55,14 @@ const MembersTable = () => {
           sortValue={sortBy}
           onChange={(e) => setSortBy(e.target.value as "name" | "joinedAt")}
         />
+        <button
+          className="p-2 rounded bg-blue-500 text-white outline-none  dark:border-blue-950"
+          aria-label="add user"
+          onClick={() => setModalOpen(true)}
+        >
+          Add User
+        </button>
+        {modalOpen&&<AddUserModal onClose={()=>setModalOpen(false)} />}
       </div>
 
       <div className="overflow-x-auto">

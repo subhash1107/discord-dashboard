@@ -12,7 +12,7 @@ const FilterSelect: React.FC<FilterSelectProps> = ({ filterValue, onChange, clas
       value={filterValue}
       aria-label='select option to filter users'
       onChange={onChange}
-      className={`p-2 rounded bg-blue-500 text-white outline-none border dark:border-blue-950 ${className}`}
+      className={`p-2 rounded bg-blue-500 text-white outline-none  dark:border-blue-950 ${className}`}
     >
       <option aria-label='all roles' value="All">All Roles</option>
       <option aria-label='admin' value="Admin">Admin</option>
