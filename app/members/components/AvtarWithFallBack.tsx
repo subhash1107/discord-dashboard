@@ -11,7 +11,7 @@ export const AvatarWithFallback = ({
   const [loading, setLoading] = useState(true);
 
   return (
-    <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200  relative">
+    <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200  relative" aria-label={alt}>
       {loading && <div className="absolute inset-0 bg-gray-300" />}
       <Image
         src={src}
